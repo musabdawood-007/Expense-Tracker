@@ -5,6 +5,7 @@ export interface IRoomExpense {
   amount: number;
   paidBy: string;
   splitAmong: string[];
+  splitAmounts?: Record<string, number>;
   date: string;
 }
 
@@ -24,6 +25,7 @@ const RoomExpenseSchema = new Schema<IRoomExpense>({
   amount: { type: Number, required: true },
   paidBy: { type: String, required: true },
   splitAmong: { type: [String], required: true },
+  splitAmounts: { type: Schema.Types.Mixed, default: undefined },
   date: { type: String, required: true },
 }, { _id: false });
 

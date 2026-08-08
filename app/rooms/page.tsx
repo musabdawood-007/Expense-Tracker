@@ -453,7 +453,11 @@ function RoomsContent() {
                     <tr key={i} className="border-b border-line/50 last:border-0 hover:bg-cream-2 transition-colors">
                       <td className="px-5 py-3 text-[13px] font-medium">{e.title}</td>
                       <td className="px-5 py-3 text-[13px] text-muted max-[600px]:hidden">{e.paidBy}</td>
-                      <td className="px-5 py-3 text-[12px] text-muted max-[600px]:hidden">{e.splitAmong.join(", ")}</td>
+                      <td className="px-5 py-3 text-[12px] text-muted max-[600px]:hidden">
+                        {e.splitAmounts && Object.keys(e.splitAmounts).length > 0
+                          ? Object.entries(e.splitAmounts).map(([n, a]) => `${n}: ${symbol}${a}`).join(", ")
+                          : e.splitAmong.join(", ")}
+                      </td>
                       <td className="px-5 py-3 text-right font-serif text-[14px] font-medium text-ink">{symbol}{e.amount.toLocaleString()}</td>
                       <td className="px-5 py-3 text-right">
                         <button onClick={() => handleDeleteExpense(i)} className="w-7 h-7 rounded-lg text-muted hover:text-accent-red hover:bg-accent-red/10 grid place-items-center transition-colors" title="Remove expense">
