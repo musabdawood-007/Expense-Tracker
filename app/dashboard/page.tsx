@@ -264,9 +264,9 @@ export default function DashboardPage() {
             { lbl: "Expenses", val: `${symbol}${totalExpenses.toLocaleString()}`, delta: `${expenses.filter((e) => e.type === "expense").length} transactions`, up: false, dark: false, spark: [80, 60, 50, 70, 40, 30] },
             { lbl: "Savings rate", val: `${savingsRate}%`, delta: `${savingsRate > 50 ? "Great" : "Room to improve"}`, up: savingsRate > 50, dark: false, spark: [50, 60, 55, 70, 80, 95] },
           ].map((s) => (
-            <div key={s.lbl} className={`rounded-xl p-[22px] transition-all hover:-translate-y-0.5 hover:shadow-md relative overflow-hidden ${s.dark ? "bg-ink text-cream border border-ink" : "bg-white border border-line"}`}>
-              <div className={`text-[11.5px] uppercase tracking-[.08em] mb-2.5 font-medium ${s.dark ? "text-cream-3 opacity-70" : "text-muted"}`}>{s.lbl}</div>
-              <div className="font-serif text-[30px] font-medium tracking-[-.02em] mb-1.5 leading-none">{s.val}</div>
+            <div key={s.lbl} className={`rounded-xl p-[22px] transition-all hover:-translate-y-0.5 hover:shadow-md relative overflow-hidden ${s.dark ? "bg-ink border border-ink" : "bg-white border border-line"}`}>
+              <div className={`text-[11.5px] uppercase tracking-[.08em] mb-2.5 font-medium ${s.dark ? "text-cream opacity-70" : "text-muted"}`}>{s.lbl}</div>
+              <div className={`font-serif text-[30px] font-medium tracking-[-.02em] mb-1.5 leading-none ${s.dark ? "text-cream" : "text-ink"}`}>{s.val}</div>
               <div className={`text-[12px] font-medium ${s.up ? (s.dark ? "text-gold-soft" : "text-accent-green") : "text-accent-red"}`}>{s.delta}</div>
               <Sparkline heights={s.spark} dark={s.dark} />
             </div>

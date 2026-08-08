@@ -131,7 +131,7 @@ export default function Home() {
               ))}
             </aside>
             <div className="p-5 md:p-7">
-              <h4 className="font-serif text-[18px] md:text-[22px] font-medium mb-1">Good morning, Ali</h4>
+              <h4 className="font-serif text-[18px] md:text-[22px] font-medium mb-1 text-ink">Good morning, Ali</h4>
               <div className="text-[11px] md:text-[12.5px] text-muted mb-4 md:mb-5">Your August snapshot</div>
               <div className="grid grid-cols-3 gap-2 md:gap-3 mb-4 md:mb-5">
                 {[
@@ -168,7 +168,7 @@ export default function Home() {
             <div key={f.title} className="bg-cream p-6 md:p-[38px_32px] hover:bg-white transition-colors">
               <div className="font-serif italic text-[13px] md:text-[14px] text-gold mb-3 md:mb-4 tracking-[.04em]">— {f.num}</div>
               <div className="w-10 h-10 md:w-11 md:h-11 rounded-[10px] bg-cream-2 border border-line grid place-items-center text-[18px] md:text-[20px] mb-4 md:mb-5">{f.icon}</div>
-              <h3 className="text-[17px] md:text-[21px] font-medium mb-2 tracking-[-.015em]">{f.title}</h3>
+              <h3 className="text-[17px] md:text-[21px] font-medium mb-2 tracking-[-.015em] text-ink">{f.title}</h3>
               <p className="text-[13px] md:text-[14.5px] text-muted leading-[1.65]">{f.desc}</p>
             </div>
           ))}
@@ -186,7 +186,7 @@ export default function Home() {
           {steps.map((s, i) => (
             <div key={s.title} className={`py-8 md:py-[42px] px-5 md:px-7 ${i < steps.length - 1 ? "border-b sm:border-b-0 sm:border-r border-line-2" : ""}`}>
               <div className="font-serif italic text-[12px] md:text-[13px] text-gold tracking-[.05em] mb-3">— Step {s.num}</div>
-              <h4 className="font-serif text-[17px] md:text-[20px] font-medium mb-2 tracking-[-.015em]">{s.title}</h4>
+              <h4 className="font-serif text-[17px] md:text-[20px] font-medium mb-2 tracking-[-.015em] text-ink">{s.title}</h4>
               <p className="text-[13px] md:text-[14px] text-muted leading-[1.65]">{s.desc}</p>
             </div>
           ))}

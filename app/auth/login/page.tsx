@@ -146,7 +146,7 @@ export default function LoginPage() {
                 <label className="flex items-center gap-2 text-muted cursor-pointer">
                   <input type="checkbox" defaultChecked className="w-auto accent-ink" /> Remember me
                 </label>
-                <a className="text-ink font-medium border-b border-ink pb-px cursor-pointer">Forgot password?</a>
+                <Link href="/auth/forgot-password" className="text-ink font-medium border-b border-ink pb-px cursor-pointer">Forgot password?</Link>
               </div>
             )}
 

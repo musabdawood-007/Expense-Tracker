@@ -53,7 +53,7 @@ function RoomsContent() {
     if (authLoading) return;
     if (!user) { router.push("/auth/login"); return; }
     if (!user.verified) { router.push(`/auth/verify?email=${encodeURIComponent(user.email)}`); return; }
-    fetch(`/api/rooms?userId=${user.id}`)
+    fetch(`/api/rooms?userId=${user.id}&userName=${encodeURIComponent(user.name)}`)
       .then((r) => r.json())
       .then((d) => {
         const list = d.rooms || [];
