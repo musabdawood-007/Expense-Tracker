@@ -91,14 +91,14 @@ export default function Sidebar({ active }: { active: string }) {
       {/* Mobile hamburger button */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="fixed top-4 left-4 z-[60] w-11 h-11 rounded-lg bg-ink text-cream grid place-items-center shadow-lg lg:hidden"
+        className="fixed top-4 left-4 z-[60] w-11 h-11 rounded-lg bg-ink text-cream grid place-items-center shadow-lg min-[901px]:hidden"
       >
         <Menu size={20} />
       </button>
 
       {/* Mobile sidebar overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-[55] lg:hidden">
+        <div className="fixed inset-0 z-[55] min-[901px]:hidden">
           <div className="absolute inset-0 bg-ink/50 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
           <aside className="absolute left-0 top-0 bottom-0 w-[260px] bg-cream-2 border-r border-line p-6 flex flex-col">
             <div className="flex justify-between items-center mb-7">
@@ -156,7 +156,7 @@ export default function Sidebar({ active }: { active: string }) {
       )}
 
       {/* Mobile bottom nav */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-line flex justify-around items-center h-16 px-2 lg:hidden safe-area-bottom">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-cream-2 border-t border-line flex justify-around items-center h-16 px-2 min-[901px]:hidden safe-area-bottom">
         {mobileNav.map(({ icon: Icon, label, href }) => (
           <Link key={label} href={href} className={`flex flex-col items-center gap-1 px-3 py-1.5 rounded-lg transition-colors ${isActive(label) ? "text-ink" : "text-muted"}`}>
             <Icon size={20} strokeWidth={isActive(label) ? 2.2 : 1.8} />

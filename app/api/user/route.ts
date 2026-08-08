@@ -37,7 +37,7 @@ export async function DELETE(req: Request) {
     await Budget.deleteMany({ userId: id });
     await Goal.deleteMany({ userId: id });
     await Group.deleteMany({ userId: id });
-    await Room.deleteMany({ createdBy: id });
+    await Room.deleteMany({ userId: id });
 
     return NextResponse.json({ success: true });
   } catch (error) {

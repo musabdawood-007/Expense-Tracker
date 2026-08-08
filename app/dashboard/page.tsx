@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
-import { Search, Plus, Bell, ChevronDown } from "lucide-react";
+import { Search, Plus, ChevronDown } from "lucide-react";
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell,
@@ -20,6 +20,13 @@ interface Expense {
   type: "income" | "expense";
   category: string;
   date: string;
+}
+
+interface Budget {
+  _id: string;
+  category: string;
+  limit: number;
+  spent: number;
 }
 
 function CurrencyDropdown() {
@@ -85,6 +92,7 @@ export default function DashboardPage() {
   const router = useRouter();
   const [chip, setChip] = useState("30D");
   const [expenses, setExpenses] = useState<Expense[]>([]);
+  const [realBudgets, setRealBudgets] = useState<Budget[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAddExpense, setShowAddExpense] = useState(false);
   const [search, setSearch] = useState("");
@@ -94,10 +102,14 @@ export default function DashboardPage() {
     if (!authLoading && !user) { router.push("/auth/login"); return; }
     if (!authLoading && user && !user.verified) { router.push(`/auth/verify?email=${encodeURIComponent(user.email)}`); return; }
     if (!user) return;
-    fetch(`/api/expenses?userId=${user.id}`)
-      .then((r) => r.json())
-      .then((d) => { setExpenses(d.expenses || []); setLoading(false); })
-      .catch(() => setLoading(false));
+    Promise.all([
+      fetch(`/api/expenses?userId=${user.id}`).then((r) => r.json()),
+      fetch(`/api/budgets?userId=${user.id}`).then((r) => r.json()),
+    ]).then(([expData, budData]) => {
+      setExpenses(expData.expenses || []);
+      setRealBudgets(budData.budgets || []);
+      setLoading(false);
+    }).catch(() => setLoading(false));
   }, [user, router, authLoading]);
 
   const filtered = expenses.filter((e) => {
@@ -135,10 +147,17 @@ export default function DashboardPage() {
   expenses.filter((e) => e.type === "expense").forEach((e) => {
     categoryTotals[e.category] = (categoryTotals[e.category] || 0) + e.amount;
   });
-  const budgets = Object.entries(categoryTotals)
-    .map(([cat, spent]) => ({ cat, spent, limit: Math.ceil(spent * 1.3), pct: Math.min(100, Math.round((spent / (spent * 1.3)) * 100)), color: "bg-accent-green" }))
-    .sort((a, b) => b.spent - a.spent)
-    .slice(0, 5);
+  const budgets = realBudgets.length > 0
+    ? realBudgets.map((b) => ({
+        cat: b.category,
+        spent: b.spent,
+        limit: b.limit,
+        pct: b.limit > 0 ? Math.min(100, Math.round((b.spent / b.limit) * 100)) : 0,
+      }))
+    : Object.entries(categoryTotals)
+        .map(([cat, spent]) => ({ cat, spent, limit: Math.ceil(spent * 1.3), pct: Math.min(100, Math.round((spent / (spent * 1.3)) * 100)) }))
+        .sort((a, b) => b.spent - a.spent)
+        .slice(0, 5);
 
   const handleAddExpense = async (formData: FormData) => {
     if (!user) return;

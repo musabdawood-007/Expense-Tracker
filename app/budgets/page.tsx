@@ -37,27 +37,22 @@ export default function BudgetsPage() {
     if (!authLoading && !user) { router.push("/auth/login"); return; }
     if (!authLoading && user && !user.verified) { router.push(`/auth/verify?email=${encodeURIComponent(user.email)}`); return; }
     if (!user) return;
-    fetch(`/api/budgets?userId=${user.id}`)
-      .then((r) => r.json())
-      .then((d) => { setBudgets(d.budgets || []); setLoading(false); })
-      .catch(() => setLoading(false));
-  }, [user, router, authLoading]);
-
-  useEffect(() => {
-    if (!user) return;
-    fetch(`/api/expenses?userId=${user.id}`)
-      .then((r) => r.json())
-      .then((d) => {
-        const expenses = d.expenses || [];
-        const updated = budgets.map((b) => {
-          const spent = expenses
-            .filter((e: { type: string; category: string; date: string }) => e.type === "expense" && e.category === b.category && e.date.startsWith(b.month))
-            .reduce((s: number, e: { amount: number }) => s + e.amount, 0);
-          return { ...b, spent };
-        });
-        if (JSON.stringify(updated) !== JSON.stringify(budgets)) setBudgets(updated);
+    Promise.all([
+      fetch(`/api/budgets?userId=${user.id}`).then((r) => r.json()),
+      fetch(`/api/expenses?userId=${user.id}`).then((r) => r.json()),
+    ]).then(([budData, expData]) => {
+      const budgetsList = budData.budgets || [];
+      const expenses = expData.expenses || [];
+      const updated = budgetsList.map((b: { category: string; month: string; limit: number; [key: string]: unknown }) => {
+        const spent = expenses
+          .filter((e: { type: string; category: string; date: string }) => e.type === "expense" && e.category === b.category && e.date.startsWith(b.month))
+          .reduce((s: number, e: { amount: number }) => s + e.amount, 0);
+        return { ...b, spent };
       });
-  }, [user, budgets]);
+      setBudgets(updated);
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, [user, router, authLoading]);
 
   const handleAdd = async () => {
     if (!user || !newLimit) return;

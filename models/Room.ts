@@ -12,6 +12,7 @@ export interface IRoom extends Document {
   code: string;
   name: string;
   createdBy: string;
+  userId: string;
   members: string[];
   expenses: IRoomExpense[];
   settled: boolean;
@@ -30,6 +31,7 @@ const RoomSchema = new Schema<IRoom>({
   code: { type: String, required: true, unique: true, index: true },
   name: { type: String, required: true },
   createdBy: { type: String, required: true },
+  userId: { type: String, required: true },
   members: { type: [String], required: true },
   expenses: { type: [RoomExpenseSchema], default: [] },
   settled: { type: Boolean, default: false },

@@ -3,10 +3,8 @@
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
-import { useAuth } from "../../../components/AuthContext";
 
 function GoogleCallbackHandler() {
-  const { login } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -28,7 +26,7 @@ function GoogleCallbackHandler() {
         router.push("/auth/login?error=parse_failed");
       }
     }
-  }, [searchParams, router, login]);
+  }, [searchParams, router]);
 
   return (
     <div className="min-h-screen bg-cream flex items-center justify-center">

@@ -40,7 +40,7 @@ export default function ForgotPasswordPage() {
     addToast("Reset code sent to your email");
   };
 
-  const handleCodeChange = (index: number, value: string) => {
+  const handleCodeChange = async (index: number, value: string) => {
     if (!/^\d*$/.test(value)) return;
     const newCode = [...code];
     newCode[index] = value.slice(-1);
@@ -51,6 +51,16 @@ export default function ForgotPasswordPage() {
       if (next) next.focus();
     }
     if (newCode.every((c) => c.length === 1)) {
+      setLoading(true);
+      setError("");
+      const res = await fetch("/api/otp/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, code: newCode.join("") }),
+      });
+      const data = await res.json();
+      setLoading(false);
+      if (data.error) { setError(data.error); return; }
       setStep("new-password");
     }
   };

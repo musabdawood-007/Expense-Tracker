@@ -20,11 +20,7 @@ export async function GET(req: Request) {
     }
 
     if (!userId) return NextResponse.json({ error: "userId required" }, { status: 400 });
-    const userName = searchParams.get("userName");
-    const query = userName
-      ? { $or: [{ members: userName }, { createdBy: userName }], settled: false }
-      : { members: userId, settled: false };
-    const rooms = await Room.find(query).sort({ createdAt: -1 });
+    const rooms = await Room.find({ userId, settled: false }).sort({ createdAt: -1 });
     return NextResponse.json({ rooms });
   } catch (error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
@@ -61,6 +57,7 @@ export async function POST(req: Request) {
       code: code2,
       name,
       createdBy: memberName,
+      userId,
       members: [memberName],
       expenses: [],
     });
