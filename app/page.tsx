@@ -85,15 +85,11 @@ export default function Home() {
 
       {/* Hero */}
       <header className="pt-16 md:pt-20 pb-12 md:pb-16 px-5 md:px-8 text-center max-w-[1100px] mx-auto relative">
-        <span className="inline-flex items-center gap-2 bg-cream-2 border border-line-2 px-4 py-[7px] rounded-full text-[11px] md:text-[12.5px] font-medium text-ink-3 tracking-[.04em] uppercase mb-6 md:mb-8">
-          <span className="w-[6px] h-[6px] rounded-full bg-gold shadow-[0_0_0_3px_rgba(166,124,46,.15)]" />
-          For people who care about their money
-        </span>
         <h1 className="text-[36px] sm:text-[52px] md:text-[72px] lg:text-[84px] font-normal leading-none tracking-[-.035em] mb-5 md:mb-6 text-ink">
-          Spend with intention.<br />Save with <em className="italic text-indigo font-medium" style={{ fontStyle: "italic" }}>clarity</em>.
+          Spend with <em className="italic text-indigo font-medium" style={{ fontStyle: "italic" }}>intention</em>.
         </h1>
-        <p className="text-[15px] md:text-[19px] text-muted max-w-[580px] mx-auto mb-8 md:mb-9 leading-relaxed px-2">
-          SpendWise is a quiet, considered expense tracker — built for thoughtful people who&apos;d rather understand their money than merely track it.
+        <p className="text-[15px] md:text-[19px] text-muted max-w-[500px] mx-auto mb-8 md:mb-9 leading-relaxed px-2">
+          Track spending, set budgets, and build habits that quietly compound.
         </p>
         <div className="flex gap-3 justify-center flex-wrap mb-12 md:mb-20">
           <Link href="/auth/login" className="inline-flex items-center gap-2 px-6 md:px-[30px] py-3.5 md:py-4 rounded-lg bg-ink text-cream border border-ink text-[14px] md:text-[15px] font-medium hover:bg-ink-2 transition-all hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-8px_rgba(30,27,75,.4)] group">

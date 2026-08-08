@@ -43,12 +43,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${fraunces.variable}`} suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700&display=swap" rel="stylesheet" />
         <style dangerouslySetInnerHTML={{ __html: `
           .font-serif, h1, h2, h3, h4 {
-            font-family: var(--font-fraunces), Georgia, serif !important;
+            font-family: 'Fraunces', Georgia, serif !important;
           }
-          body {
-            font-family: var(--font-inter), system-ui, -apple-system, sans-serif !important;
+          body, .font-sans {
+            font-family: var(--font-inter), 'Inter', system-ui, -apple-system, sans-serif !important;
           }
         `}} />
       </head>

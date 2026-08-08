@@ -48,46 +48,28 @@ export default function LoginPage() {
         <div className="absolute -top-[180px] -right-[120px] w-[520px] h-[520px] rounded-full bg-[radial-gradient(circle,rgba(166,124,46,.18),transparent_65%)]" />
         <div className="absolute -bottom-[200px] -left-[100px] w-[420px] h-[420px] rounded-full bg-[radial-gradient(circle,rgba(67,56,202,.25),transparent_65%)]" />
 
-        <div className="relative z-[2] flex justify-between items-center">
+        <div className="relative z-[2]">
           <Link href="/" className="flex items-center gap-2.5 font-serif font-semibold text-[22px] tracking-tight text-cream">
             <span className="w-[34px] h-[34px] rounded-[9px] bg-cream text-ink grid place-items-center text-[16px] font-serif font-semibold">
               <Wallet size={16} strokeWidth={2.5} />
             </span>
             SpendWise
           </Link>
-          <span className="text-[11px] text-gold-soft tracking-[.12em] uppercase border border-gold-soft/30 px-3 py-[5px] rounded-full">Trusted · 50K+</span>
         </div>
 
-        <div className="relative z-[2] max-w-[460px]">
-          <div className="text-[12px] text-gold-soft tracking-[.14em] uppercase mb-4 font-semibold">— Start your journey</div>
-          <h2 className="font-serif text-[44px] font-normal leading-[1.1] tracking-[-.02em] mb-6 italic text-cream" text-ink>
-            Let&apos;s <em className="text-gold-soft font-medium">begin</em>.
+        <div className="relative z-[2] max-w-[400px]">
+          <h2 className="font-serif text-[44px] font-normal leading-[1.1] tracking-[-.02em] mb-4 text-cream">
+            Spend with <em className="text-gold-soft italic" style={{ fontStyle: "italic" }}>intention</em>.
           </h2>
-          <p className="text-cream-3 opacity-80 text-[15px] leading-[1.6] mb-8 max-w-[380px]">
-            Track your spending, set budgets, and build habits that quietly compound — all in one calm, considered app.
+          <p className="text-cream-3 opacity-70 text-[15px] leading-[1.6]">
+            Track your spending, set budgets, and build habits that quietly compound.
           </p>
-          <div className="flex items-center gap-3.5 pt-6 border-t border-white/[.12]">
-            <div className="w-[44px] h-[44px] rounded-full bg-gradient-to-br from-gold to-gold-soft grid place-items-center text-ink font-semibold text-[14px] font-serif">S</div>
-            <div>
-              <div className="text-[14px] font-medium text-cream">SpendWise</div>
-              <div className="text-[12.5px] text-cream-3 opacity-70 mt-0.5">Your finances, simplified</div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-3.5 mt-9 pt-8 border-t border-white/[.1]">
-            {[
-              { icon: "🔒", label: "256-bit encryption" },
-              { icon: "🌍", label: "GDPR compliant" },
-              { icon: "⚡", label: "Free forever" },
-              { icon: "📥", label: "Export anytime" },
-            ].map((f) => (
-              <div key={f.label} className="flex items-center gap-2.5 text-[13px] text-cream-3 opacity-85">
-                <div className="w-7 h-7 rounded-[7px] bg-gold/18 text-gold-soft grid place-items-center text-[13px] flex-shrink-0">{f.icon}</div>
-                {f.label}
-              </div>
-            ))}
-          </div>
         </div>
+
+        <div className="relative z-[2] text-[12px] opacity-50">
+          <span>© 2026 MUSAB Projects</span>
+        </div>
+      </aside>
 
         <div className="relative z-[2] text-[12px] opacity-60 flex justify-between items-center">
           <span>© 2026 SpendWise</span>
