@@ -55,12 +55,12 @@ export default function SettingsPage() {
       <main className="flex-1 p-[36px_40px] pb-28 max-w-[800px] mx-auto w-full max-[600px]:p-[24px_16px_100px] max-[900px]:pl-[60px]">
         <div className="mb-8">
           <div className="text-[13px] text-muted mb-1.5">Account preferences</div>
-          <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]" text-ink>Settings</h2>
+          <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]">Settings</h2>
         </div>
 
         {/* Profile */}
         <div className="bg-white border border-line rounded-xl p-6 mb-4">
-          <h3 className="font-serif text-[18px] font-medium mb-5" text-ink>Profile</h3>
+          <h3 className="font-serif text-[18px] font-medium mb-5">Profile</h3>
           <div className="grid grid-cols-2 max-[600px]:grid-cols-1 gap-4 mb-4">
             <div>
               <label className="block text-[12.5px] font-medium mb-2 text-ink">Name</label>
@@ -78,7 +78,7 @@ export default function SettingsPage() {
 
         {/* Currency */}
         <div className="bg-white border border-line rounded-xl p-6 mb-4">
-          <h3 className="font-serif text-[18px] font-medium mb-5" text-ink>Currency</h3>
+          <h3 className="font-serif text-[18px] font-medium mb-5">Currency</h3>
           <div className="flex gap-2 flex-wrap">
             {(Object.keys(currencies) as Currency[]).map((c) => (
               <button key={c} onClick={() => setCurrency(c)} className={`px-4 py-2.5 rounded-lg border text-[13px] font-medium transition-all ${c === currency ? "bg-ink text-cream border-ink" : "bg-white text-muted border-line-2 hover:border-ink"}`}>
@@ -90,7 +90,7 @@ export default function SettingsPage() {
 
         {/* Danger zone */}
         <div className="bg-white border border-accent-red/30 rounded-xl p-6">
-          <h3 className="font-serif text-[18px] font-medium mb-2 text-accent-red" text-ink>Danger zone</h3>
+          <h3 className="font-serif text-[18px] font-medium mb-2 text-accent-red">Danger zone</h3>
           <p className="text-[13px] text-muted mb-4">Permanently delete your account and all data (expenses, budgets, goals, groups, rooms).</p>
           <button onClick={handleDeleteAccount} className="px-5 py-2.5 rounded-lg bg-accent-red/10 text-accent-red text-[13px] font-medium hover:bg-accent-red/20 transition-all">
             Delete account

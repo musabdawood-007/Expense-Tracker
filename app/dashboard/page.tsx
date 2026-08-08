@@ -189,7 +189,7 @@ export default function DashboardPage() {
         <div className="fixed inset-0 z-[100] bg-ink/80 backdrop-blur-sm flex items-center justify-center p-8">
           <div className="bg-white rounded-2xl max-w-[440px] w-full p-8 relative">
             <button onClick={() => setShowAddExpense(false)} className="absolute top-4 right-4 text-muted hover:text-ink text-[18px]">✕</button>
-            <h3 className="font-serif text-[24px] font-medium mb-6" text-ink>Add expense</h3>
+            <h3 className="font-serif text-[24px] font-medium mb-6">Add expense</h3>
             <form action={handleAddExpense}>
               <div className="mb-4">
                 <label className="block text-[12.5px] font-medium mb-2 text-ink">Title</label>
@@ -243,7 +243,7 @@ export default function DashboardPage() {
         <div className="flex justify-between items-end mb-8 flex-wrap gap-3.5">
           <div>
             <div className="text-[13px] text-muted mb-1.5 tracking-[.02em]">{today}</div>
-            <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]" text-ink>Good morning, <em className="italic text-indigo" style={{ fontStyle: "italic" }}>{user?.name || "Ali"}</em>.</h2>
+            <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]">Good morning, <em className="italic text-indigo" style={{ fontStyle: "italic" }}>{user?.name || "Ali"}</em>.</h2>
           </div>
           <div className="flex items-center gap-2.5 max-[600px]:flex-wrap max-[600px]:w-full">
             <div className="flex items-center gap-2 bg-white border border-line-2 rounded-lg px-3.5 py-[9px] text-[13px] text-muted flex-1 min-w-[140px] transition-all focus-within:border-ink focus-within:shadow-[0_0_0_3px_rgba(30,27,75,.06)]">
@@ -277,7 +277,7 @@ export default function DashboardPage() {
           <div className="bg-white border border-line rounded-xl p-6">
             <div className="flex justify-between items-center mb-5 gap-3 flex-wrap">
               <div>
-                <h3 className="font-serif text-[18px] font-medium tracking-[-.015em]" text-ink>Cash flow</h3>
+                <h3 className="font-serif text-[18px] font-medium tracking-[-.015em]">Cash flow</h3>
                 <div className="text-[12px] text-muted mt-0.5">Income vs expenses</div>
               </div>
               <div className="flex gap-1">
@@ -305,7 +305,7 @@ export default function DashboardPage() {
           <div className="bg-white border border-line rounded-xl p-6">
             <div className="flex justify-between items-center mb-5 gap-3 flex-wrap">
               <div>
-                <h3 className="font-serif text-[18px] font-medium tracking-[-.015em]" text-ink>Recent transactions</h3>
+                <h3 className="font-serif text-[18px] font-medium tracking-[-.015em]">Recent transactions</h3>
                 <div className="text-[12px] text-muted mt-0.5">{filtered.length} total</div>
               </div>
               <Link href="/expenses" className="text-[11.5px] font-medium px-[11px] py-[5px] rounded-full bg-cream-2 text-muted cursor-pointer hover:border-line-2 transition-colors">View all →</Link>
@@ -331,7 +331,7 @@ export default function DashboardPage() {
           <div className="bg-white border border-line rounded-xl p-6">
             <div className="flex justify-between items-center mb-5 gap-3 flex-wrap">
               <div>
-                <h3 className="font-serif text-[18px] font-medium tracking-[-.015em]" text-ink>Monthly budgets</h3>
+                <h3 className="font-serif text-[18px] font-medium tracking-[-.015em]">Monthly budgets</h3>
                 <div className="text-[12px] text-muted mt-0.5">{budgets.length} categories</div>
               </div>
             </div>
@@ -354,7 +354,7 @@ export default function DashboardPage() {
         <div className="bg-ink text-cream rounded-xl p-7 relative overflow-hidden">
           <div className="absolute -top-[50px] -right-[50px] w-[200px] h-[200px] rounded-full bg-[radial-gradient(circle,rgba(166,124,46,.18),transparent_65%)]" />
           <div className="flex justify-between items-center mb-[18px] relative z-[2]">
-            <h3 className="font-serif text-[18px] font-medium italic text-cream" text-ink>Insights</h3>
+            <h3 className="font-serif text-[18px] font-medium italic text-cream">Insights</h3>
             <span className="text-[11px] text-gold-soft tracking-[.1em] uppercase font-semibold">— Auto-generated</span>
           </div>
           <div className="flex flex-col gap-3.5 relative z-[2]">

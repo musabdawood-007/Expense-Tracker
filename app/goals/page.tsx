@@ -94,7 +94,7 @@ export default function GoalsPage() {
         <div className="fixed inset-0 z-[100] bg-ink/80 backdrop-blur-sm flex items-center justify-center p-8">
           <div className="bg-white rounded-2xl max-w-[440px] w-full p-8 relative">
             <button onClick={() => setShowAdd(false)} className="absolute top-4 right-4 text-muted hover:text-ink text-[18px]">✕</button>
-            <h3 className="font-serif text-[24px] font-medium mb-6" text-ink>New goal</h3>
+            <h3 className="font-serif text-[24px] font-medium mb-6">New goal</h3>
             <div className="mb-4">
               <label className="block text-[12.5px] font-medium mb-2 text-ink">Icon</label>
               <div className="flex gap-2 flex-wrap">
@@ -126,7 +126,7 @@ export default function GoalsPage() {
         <div className="flex justify-between items-end mb-8 flex-wrap gap-3.5">
           <div>
             <div className="text-[13px] text-muted mb-1.5">Savings targets</div>
-            <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]" text-ink>Goals</h2>
+            <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]">Goals</h2>
           </div>
           <button onClick={() => setShowAdd(true)} className="flex items-center gap-2 px-[18px] py-2.5 rounded-lg bg-ink text-cream text-[14px] font-medium hover:bg-ink-2 transition-all">
             <Plus size={15} strokeWidth={2.5} /> New goal
@@ -136,7 +136,7 @@ export default function GoalsPage() {
         {goals.length === 0 ? (
           <div className="text-center py-20">
             <div className="text-[48px] mb-4">🎯</div>
-            <h3 className="font-serif text-[22px] font-medium mb-2" text-ink>No goals yet</h3>
+            <h3 className="font-serif text-[22px] font-medium mb-2">No goals yet</h3>
             <p className="text-[14px] text-muted mb-6">Set a savings goal and track your progress.</p>
             <button onClick={() => setShowAdd(true)} className="px-5 py-2.5 rounded-lg bg-ink text-cream text-[14px] font-medium hover:bg-ink-2 transition-all">Create your first goal</button>
           </div>
@@ -151,7 +151,7 @@ export default function GoalsPage() {
                     <div className="flex items-center gap-3">
                       <div className="w-11 h-11 rounded-[10px] bg-cream-2 border border-line grid place-items-center text-[20px]">{g.icon}</div>
                       <div>
-                        <h3 className="font-serif text-[18px] font-medium" text-ink>{g.name}</h3>
+                        <h3 className="font-serif text-[18px] font-medium">{g.name}</h3>
                         <div className="text-[12px] text-muted">Deadline: {g.deadline}</div>
                       </div>
                     </div>

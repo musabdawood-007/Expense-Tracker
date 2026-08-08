@@ -80,7 +80,7 @@ export default function ForgotPasswordPage() {
 
         {step === "email" && (
           <>
-            <h2 className="font-serif text-[24px] font-medium mb-2 text-ink" text-ink>Forgot password?</h2>
+            <h2 className="font-serif text-[24px] font-medium mb-2 text-ink">Forgot password?</h2>
             <p className="text-[14px] text-muted mb-6">Enter your email and we&apos;ll send you a reset code.</p>
             <div className="mb-4">
               <label className="block text-[12.5px] font-medium mb-2 text-ink">Email address</label>
@@ -95,7 +95,7 @@ export default function ForgotPasswordPage() {
 
         {step === "otp" && (
           <>
-            <h2 className="font-serif text-[24px] font-medium mb-2 text-ink" text-ink>Check your email</h2>
+            <h2 className="font-serif text-[24px] font-medium mb-2 text-ink">Check your email</h2>
             <p className="text-[14px] text-muted mb-6">We sent a 6-digit code to <strong className="text-ink">{email}</strong></p>
             <div className="flex justify-center gap-3 mb-6">
               {code.map((digit, i) => (
@@ -115,7 +115,7 @@ export default function ForgotPasswordPage() {
 
         {step === "new-password" && (
           <>
-            <h2 className="font-serif text-[24px] font-medium mb-2 text-ink" text-ink>Set new password</h2>
+            <h2 className="font-serif text-[24px] font-medium mb-2 text-ink">Set new password</h2>
             <p className="text-[14px] text-muted mb-6">Enter a new password for <strong className="text-ink">{email}</strong></p>
             <div className="mb-4">
               <label className="block text-[12.5px] font-medium mb-2 text-ink">New password</label>
