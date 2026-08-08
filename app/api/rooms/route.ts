@@ -20,7 +20,12 @@ export async function GET(req: Request) {
     }
 
     if (!userId) return NextResponse.json({ error: "userId required" }, { status: 400 });
-    const rooms = await Room.find({ userId, settled: false }).sort({ createdAt: -1 });
+    const userName = searchParams.get("userName");
+    const orConditions: Record<string, unknown>[] = [{ userId }];
+    if (userName) {
+      orConditions.push({ members: userName }, { createdBy: userName });
+    }
+    const rooms = await Room.find({ $or: orConditions, settled: false }).sort({ createdAt: -1 });
     return NextResponse.json({ rooms });
   } catch (error) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
