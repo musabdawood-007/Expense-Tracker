@@ -62,8 +62,8 @@
   --color-line-2: var(--line-2);
   --color-accent-green: var(--accent-green);
   --color-accent-red: var(--accent-red);
-  --font-serif: var(--font-fraunces), Georgia, serif;
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 * { border-color: var(--border); }
@@ -71,13 +71,13 @@
 body {
   background: var(--bg);
   color: var(--fg);
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
 .font-serif, h1, h2, h3, h4 {
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: 'Fraunces', Georgia, serif;
 }
 
 input, textarea, select, button { font-family: inherit; }
