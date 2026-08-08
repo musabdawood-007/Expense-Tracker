@@ -170,7 +170,7 @@ export default function ExpensesPage() {
         <div className="fixed inset-0 z-[100] bg-ink/80 backdrop-blur-sm flex items-center justify-center p-8">
           <div className="bg-white rounded-2xl max-w-[440px] w-full p-8 relative">
             <button onClick={() => setShowAdd(false)} className="absolute top-4 right-4 text-muted hover:text-ink text-[18px]">✕</button>
-            <h3 className="font-serif text-[24px] font-medium mb-6">Add transaction</h3>
+            <h3 className="font-serif text-[24px] font-medium mb-6" style={{ color: "#1E1B4B" }}>Add transaction</h3>
             <TransactionForm onSubmit={handleAdd} submitLabel="Save transaction" />
           </div>
         </div>
@@ -180,7 +180,7 @@ export default function ExpensesPage() {
         <div className="fixed inset-0 z-[100] bg-ink/80 backdrop-blur-sm flex items-center justify-center p-8">
           <div className="bg-white rounded-2xl max-w-[440px] w-full p-8 relative">
             <button onClick={() => setEditing(null)} className="absolute top-4 right-4 text-muted hover:text-ink text-[18px]">✕</button>
-            <h3 className="font-serif text-[24px] font-medium mb-6">Edit transaction</h3>
+            <h3 className="font-serif text-[24px] font-medium mb-6" style={{ color: "#1E1B4B" }}>Edit transaction</h3>
             <TransactionForm onSubmit={handleEdit} initial={editing} submitLabel="Update transaction" />
           </div>
         </div>
@@ -190,7 +190,7 @@ export default function ExpensesPage() {
         <div className="flex justify-between items-end mb-8 flex-wrap gap-3.5">
           <div>
             <div className="text-[13px] text-muted mb-1.5">{today}</div>
-            <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]">Transactions</h2>
+            <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]" style={{ color: "#1E1B4B" }}>Transactions</h2>
           </div>
           <div className="flex items-center gap-2.5 max-[600px]:w-full">
             <div className="flex items-center gap-2 bg-white border border-line-2 rounded-lg px-3.5 py-2.5 text-[13px] text-muted flex-1 min-w-[120px]">

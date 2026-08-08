@@ -197,7 +197,7 @@ function RoomsContent() {
           <div className="flex justify-between items-end mb-8 flex-wrap gap-3.5">
             <div>
               <div className="text-[13px] text-muted mb-1.5">Split bills with friends</div>
-              <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]">Rooms</h2>
+              <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]" style={{ color: "#1E1B4B" }}>Rooms</h2>
             </div>
             <div className="flex gap-2">
               <button onClick={() => setView("join")} className="flex items-center gap-2 px-[18px] py-2.5 rounded-lg border border-line-2 text-[14px] font-medium text-ink hover:border-ink transition-all">
@@ -212,7 +212,7 @@ function RoomsContent() {
           {rooms.length === 0 ? (
             <div className="text-center py-20">
               <Users className="mx-auto text-muted mb-4" size={40} />
-              <h3 className="font-serif text-[22px] font-medium mb-2">No rooms yet</h3>
+              <h3 className="font-serif text-[22px] font-medium mb-2" style={{ color: "#1E1B4B" }}>No rooms yet</h3>
               <p className="text-[14px] text-muted mb-6 max-w-[360px] mx-auto">Create a room to split cafe bills, rent, or expenses with friends. Share a 6-digit code to let them join.</p>
               <div className="flex gap-3 justify-center">
                 <button onClick={() => setView("create")} className="px-5 py-2.5 rounded-lg bg-ink text-cream text-[14px] font-medium hover:bg-ink-2 transition-all">Create a room</button>
@@ -224,7 +224,7 @@ function RoomsContent() {
               {rooms.map((room) => (
                 <div key={room._id} className="bg-white border border-line rounded-xl p-6 hover:-translate-y-0.5 hover:shadow-md transition-all cursor-pointer" onClick={() => openRoom(room)}>
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="font-serif text-[20px] font-medium">{room.name}</h3>
+                    <h3 className="font-serif text-[20px] font-medium" style={{ color: "#1E1B4B" }}>{room.name}</h3>
                     <div className="flex items-center gap-2">
                       <button onClick={(e) => { e.stopPropagation(); copyCode(room.code); }} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cream-2 text-[12px] font-mono font-semibold text-ink hover:bg-cream-3 transition-colors">
                         {room.code} {copied ? <Check size={12} /> : <Copy size={12} />}
@@ -253,7 +253,7 @@ function RoomsContent() {
       {view === "create" && (
         <div className="max-w-[480px]">
           <button onClick={backToList} className="flex items-center gap-1.5 text-[13px] text-muted mb-6 hover:text-ink transition-colors"><ArrowLeft size={14} /> Back</button>
-          <h2 className="font-serif text-[28px] font-medium mb-6">Create a room</h2>
+          <h2 className="font-serif text-[28px] font-medium mb-6" style={{ color: "#1E1B4B" }}>Create a room</h2>
           <div className="mb-4">
             <label className="block text-[12.5px] font-medium mb-2 text-ink">Room name</label>
             <input value={newName} onChange={(e) => setNewName(e.target.value)} placeholder="e.g. Cafe Split, Hostel 4" className="w-full px-3.5 py-[13px] border border-line-2 rounded-lg text-[14.5px] bg-white text-ink placeholder:text-muted focus:border-ink focus:shadow-[0_0_0_3px_rgba(30,27,75,.08)]" />
@@ -270,7 +270,7 @@ function RoomsContent() {
       {view === "join" && (
         <div className="max-w-[480px]">
           <button onClick={backToList} className="flex items-center gap-1.5 text-[13px] text-muted mb-6 hover:text-ink transition-colors"><ArrowLeft size={14} /> Back</button>
-          <h2 className="font-serif text-[28px] font-medium mb-6">Join a room</h2>
+          <h2 className="font-serif text-[28px] font-medium mb-6" style={{ color: "#1E1B4B" }}>Join a room</h2>
           <div className="mb-4">
             <label className="block text-[12.5px] font-medium mb-2 text-ink">6-digit room code</label>
             <input value={joinCode} onChange={(e) => setJoinCode(e.target.value)} placeholder="e.g. 482910" maxLength={6} className="w-full px-3.5 py-[13px] border border-line-2 rounded-lg text-[14.5px] bg-white text-ink placeholder:text-muted font-mono text-[20px] tracking-[.2em] text-center focus:border-ink focus:shadow-[0_0_0_3px_rgba(30,27,75,.08)]" />
@@ -290,7 +290,7 @@ function RoomsContent() {
 
           <div className="flex justify-between items-end mb-6 flex-wrap gap-3.5">
             <div>
-              <h2 className="font-serif text-[28px] font-medium max-[600px]:text-[22px]">{activeRoom.name}</h2>
+              <h2 className="font-serif text-[28px] font-medium max-[600px]:text-[22px]" style={{ color: "#1E1B4B" }}>{activeRoom.name}</h2>
               <div className="flex items-center gap-3 mt-1">
                 <button onClick={() => copyCode(activeRoom.code)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cream-2 text-[13px] font-mono font-semibold text-ink hover:bg-cream-3 transition-colors">
                   Code: {activeRoom.code} {copied ? <Check size={12} /> : <Copy size={12} />}
@@ -303,7 +303,7 @@ function RoomsContent() {
 
           {/* Members */}
           <div className="bg-white border border-line rounded-xl p-5 mb-4">
-            <h3 className="font-serif text-[16px] font-medium mb-3">Members</h3>
+            <h3 className="font-serif text-[16px] font-medium mb-3" style={{ color: "#1E1B4B" }}>Members</h3>
             <div className="flex flex-wrap gap-2">
               {activeRoom.members.map((m, i) => (
                 <div key={i} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-cream-2 text-[13px] font-medium">
@@ -316,7 +316,7 @@ function RoomsContent() {
 
           {/* Add expense */}
           <div className="bg-white border border-line rounded-xl p-5 mb-4">
-            <h3 className="font-serif text-[16px] font-medium mb-3">Add expense</h3>
+            <h3 className="font-serif text-[16px] font-medium mb-3" style={{ color: "#1E1B4B" }}>Add expense</h3>
             <div className="grid grid-cols-2 max-[600px]:grid-cols-1 gap-3 mb-3">
               <input value={expTitle} onChange={(e) => setExpTitle(e.target.value)} placeholder="Title (e.g. Cafe bill)" className="px-3.5 py-[11px] border border-line-2 rounded-lg text-[13px] bg-white text-ink placeholder:text-muted focus:border-ink" />
               <input type="number" value={expAmount} onChange={(e) => setExpAmount(e.target.value)} placeholder={`Amount (${symbol})`} className="px-3.5 py-[11px] border border-line-2 rounded-lg text-[13px] bg-white text-ink placeholder:text-muted focus:border-ink" />
@@ -334,7 +334,7 @@ function RoomsContent() {
           {/* Balances */}
           {activeRoom.expenses.length > 0 && (
             <div className="bg-white border border-line rounded-xl p-5 mb-4">
-              <h3 className="font-serif text-[16px] font-medium mb-3">Balances</h3>
+              <h3 className="font-serif text-[16px] font-medium mb-3" style={{ color: "#1E1B4B" }}>Balances</h3>
               <div className="flex flex-wrap gap-3">
                 {Object.entries(getBalances(activeRoom)).map(([name, bal]) => (
                   <div key={name} className={`px-4 py-3 rounded-lg text-[13px] font-medium border ${bal > 0 ? "bg-accent-green/10 text-accent-green border-accent-green/20" : bal < 0 ? "bg-accent-red/10 text-accent-red border-accent-red/20" : "bg-cream-2 text-muted border-line"}`}>

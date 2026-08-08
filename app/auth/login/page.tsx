@@ -79,7 +79,7 @@ export default function LoginPage() {
 
           <div className="mb-8">
             <div className="text-[12px] font-semibold text-gold tracking-[.14em] uppercase mb-3.5">Welcome</div>
-            <h2 className="font-serif text-[38px] font-normal tracking-[-.025em] leading-[1.08] mb-2.5 text-ink">
+            <h2 className="font-serif text-[38px] font-normal tracking-[-.025em] leading-[1.08] mb-2.5 text-ink" style={{ color: "#1E1B4B" }}>
               {tab === "login" ? <>Welcome <em className="italic text-indigo" style={{ fontStyle: "italic" }}>back</em>.</> : <>Begin <em className="italic text-indigo" style={{ fontStyle: "italic" }}>anew</em>.</>}
             </h2>
             <p className="text-muted text-[14.5px]">

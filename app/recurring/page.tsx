@@ -54,7 +54,7 @@ export default function RecurringPage() {
         <div className="flex justify-between items-end mb-8 flex-wrap gap-3.5">
           <div>
             <div className="text-[13px] text-muted mb-1.5">Subscriptions & recurring</div>
-            <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]">Recurring</h2>
+            <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]" style={{ color: "#1E1B4B" }}>Recurring</h2>
           </div>
           <div className="bg-white border border-line rounded-xl px-5 py-3">
             <div className="text-[11.5px] uppercase tracking-[.08em] text-muted mb-1">Monthly total</div>
@@ -65,7 +65,7 @@ export default function RecurringPage() {
         {recurring.length === 0 ? (
           <div className="text-center py-20">
             <Repeat className="mx-auto text-muted mb-4" size={40} />
-            <h3 className="font-serif text-[22px] font-medium mb-2">No recurring expenses</h3>
+            <h3 className="font-serif text-[22px] font-medium mb-2" style={{ color: "#1E1B4B" }}>No recurring expenses</h3>
             <p className="text-[14px] text-muted">Your subscriptions and recurring charges will appear here.</p>
           </div>
         ) : (
