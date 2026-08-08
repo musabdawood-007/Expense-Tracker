@@ -60,7 +60,7 @@ export default function LoginPage() {
 
         <div className="relative z-[2] max-w-[460px]">
           <div className="text-[12px] text-gold-soft tracking-[.14em] uppercase mb-4 font-semibold">— Start your journey</div>
-          <h2 className="font-serif text-[44px] font-normal leading-[1.1] tracking-[-.02em] mb-6 italic text-cream">
+          <h2 className="font-serif text-[44px] font-normal leading-[1.1] tracking-[-.02em] mb-6 italic text-cream" text-ink>
             Let&apos;s <em className="text-gold-soft font-medium">begin</em>.
           </h2>
           <p className="text-cream-3 opacity-80 text-[15px] leading-[1.6] mb-8 max-w-[380px]">
@@ -103,7 +103,7 @@ export default function LoginPage() {
 
           <div className="mb-8">
             <div className="text-[12px] font-semibold text-gold tracking-[.14em] uppercase mb-3.5">Welcome</div>
-            <h2 className="font-serif text-[38px] font-normal tracking-[-.025em] leading-[1.08] mb-2.5">
+            <h2 className="font-serif text-[38px] font-normal tracking-[-.025em] leading-[1.08] mb-2.5 text-ink" text-ink>
               {tab === "login" ? <>Welcome <em className="italic text-indigo" style={{ fontStyle: "italic" }}>back</em>.</> : <>Begin <em className="italic text-indigo" style={{ fontStyle: "italic" }}>anew</em>.</>}
             </h2>
             <p className="text-muted text-[14.5px]">

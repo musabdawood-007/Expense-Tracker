@@ -106,7 +106,7 @@ export default function BudgetsPage() {
         <div className="fixed inset-0 z-[100] bg-ink/80 backdrop-blur-sm flex items-center justify-center p-8">
           <div className="bg-white rounded-2xl max-w-[440px] w-full p-8 relative">
             <button onClick={() => setShowAdd(false)} className="absolute top-4 right-4 text-muted hover:text-ink text-[18px]">✕</button>
-            <h3 className="font-serif text-[24px] font-medium mb-6">New budget</h3>
+            <h3 className="font-serif text-[24px] font-medium mb-6" text-ink>New budget</h3>
             <div className="mb-4">
               <label className="block text-[12.5px] font-medium mb-2 text-ink">Category</label>
               <select value={newCategory} onChange={(e) => setNewCategory(e.target.value)} className="w-full px-3.5 py-[13px] border border-line-2 rounded-lg text-[14.5px] bg-white text-ink focus:border-ink">
@@ -126,7 +126,7 @@ export default function BudgetsPage() {
         <div className="flex justify-between items-end mb-8 flex-wrap gap-3.5">
           <div>
             <div className="text-[13px] text-muted mb-1.5">{new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" })}</div>
-            <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]">Budgets</h2>
+            <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]" text-ink>Budgets</h2>
           </div>
           <button onClick={() => setShowAdd(true)} className="flex items-center gap-2 px-[18px] py-2.5 rounded-lg bg-ink text-cream text-[14px] font-medium hover:bg-ink-2 transition-all">
             <Plus size={15} strokeWidth={2.5} /> New budget
@@ -136,7 +136,7 @@ export default function BudgetsPage() {
         {budgets.length === 0 ? (
           <div className="text-center py-20">
             <div className="text-[48px] mb-4">📊</div>
-            <h3 className="font-serif text-[22px] font-medium mb-2">No budgets yet</h3>
+            <h3 className="font-serif text-[22px] font-medium mb-2" text-ink>No budgets yet</h3>
             <p className="text-[14px] text-muted mb-6">Set spending limits for each category to stay on track.</p>
             <button onClick={() => setShowAdd(true)} className="px-5 py-2.5 rounded-lg bg-ink text-cream text-[14px] font-medium hover:bg-ink-2 transition-all">Create your first budget</button>
           </div>
@@ -153,7 +153,7 @@ export default function BudgetsPage() {
                         {b.category === "Food" ? "🛒" : b.category === "Transport" ? "⛽" : b.category === "Entertainment" ? "🎬" : b.category === "Shopping" ? "🛍️" : b.category === "Utilities" ? "💡" : b.category === "Health" ? "💊" : b.category === "Education" ? "📚" : b.category === "Travel" ? "✈️" : "📁"}
                       </div>
                       <div>
-                        <h3 className="font-serif text-[18px] font-medium">{b.category}</h3>
+                        <h3 className="font-serif text-[18px] font-medium" text-ink>{b.category}</h3>
                         <div className="text-[12px] text-muted">{b.month}</div>
                       </div>
                     </div>
