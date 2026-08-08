@@ -1,5 +1,32 @@
 @import "tailwindcss";
 
+@theme {
+  --color-bg: #FAF7F2;
+  --color-bg-card: #FFFFFF;
+  --color-fg: #1E1B4B;
+  --color-fg-secondary: #6B6794;
+  --color-muted: #6B6794;
+  --color-muted-2: #8B87A8;
+  --color-border: #E8E3D8;
+  --color-primary: #1E1B4B;
+  --color-primary-dark: #2D2A6E;
+  --color-cream: #FAF7F2;
+  --color-cream-2: #F3EFE7;
+  --color-cream-3: #EDE7DA;
+  --color-ink: #1E1B4B;
+  --color-ink-2: #2D2A6E;
+  --color-ink-3: #3F3B7E;
+  --color-indigo: #4338CA;
+  --color-indigo-light: #6366F1;
+  --color-gold: #A67C2E;
+  --color-gold-soft: #D4B876;
+  --color-line: #E8E3D8;
+  --color-line-2: #D9D3C4;
+  --color-accent-green: #2F6F4E;
+  --color-accent-red: #A23B3B;
+  --color-white: #FFFFFF;
+}
+
 :root {
   --cream: #FAF7F2;
   --cream-2: #F3EFE7;
@@ -19,13 +46,13 @@
   --white: #FFFFFF;
   --accent-green: #2F6F4E;
   --accent-red: #A23B3B;
-  --bg: var(--cream);
-  --bg-card: var(--white);
-  --fg: var(--ink);
-  --fg-secondary: var(--muted);
-  --border: var(--line);
-  --primary: var(--ink);
-  --primary-dark: var(--ink-2);
+  --bg: #FAF7F2;
+  --bg-card: #FFFFFF;
+  --fg: #1E1B4B;
+  --fg-secondary: #6B6794;
+  --border: #E8E3D8;
+  --primary: #1E1B4B;
+  --primary-dark: #2D2A6E;
 }
 
 .dark {
@@ -35,34 +62,15 @@
   --fg: #f0ece4;
   --fg-secondary: #9e99af;
   --border: #2a2a4a;
-  --primary: var(--gold);
-  --primary-dark: var(--gold-soft);
-}
-
-@theme inline {
-  --color-bg: var(--bg);
-  --color-bg-card: var(--bg-card);
-  --color-fg: var(--fg);
-  --color-fg-secondary: var(--fg-secondary);
-  --color-muted: var(--muted);
-  --color-muted-2: var(--muted-2);
-  --color-border: var(--border);
-  --color-primary: var(--primary);
-  --color-primary-dark: var(--primary-dark);
-  --color-cream: var(--cream);
-  --color-cream-2: var(--cream-2);
-  --color-cream-3: var(--cream-3);
-  --color-ink: var(--ink);
-  --color-ink-2: var(--ink-2);
-  --color-ink-3: var(--ink-3);
-  --color-indigo: var(--indigo);
-  --color-indigo-light: var(--indigo-light);
-  --color-gold: var(--gold);
-  --color-gold-soft: var(--gold-soft);
-  --color-line: var(--line);
-  --color-line-2: var(--line-2);
-  --color-accent-green: var(--accent-green);
-  --color-accent-red: var(--accent-red);
+  --primary: #A67C2E;
+  --primary-dark: #D4B876;
+  --cream: #f0ece4;
+  --cream-2: #1a1a3e;
+  --cream-3: #2a2a4a;
+  --muted: #9e99af;
+  --muted-2: #7a768e;
+  --line: #2a2a4a;
+  --line-2: #3a3a5a;
 }
 
 * { border-color: var(--border); }
@@ -78,7 +86,7 @@ h1, h2, h3, h4 {
   line-height: 1.08;
   letter-spacing: -0.015em;
   font-weight: 500;
-  color: var(--ink) !important;
+  color: var(--ink);
 }
 
 input, textarea, select, button { font-family: inherit; }
@@ -91,91 +99,3 @@ input:focus, textarea:focus, select:focus { outline: none; }
 ::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 3px; }
 
 .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
-
-/* Tailwind v4 @theme inline variable fallbacks for Chrome */
-.text-ink { color: var(--ink) !important; }
-.text-ink-2 { color: var(--ink-2) !important; }
-.text-ink-3 { color: var(--ink-3) !important; }
-.text-cream { color: var(--cream) !important; }
-.text-cream-2 { color: var(--cream-2) !important; }
-.text-cream-3 { color: var(--cream-3) !important; }
-.text-indigo { color: var(--indigo) !important; }
-.text-indigo-light { color: var(--indigo-light) !important; }
-.text-gold { color: var(--gold) !important; }
-.text-gold-soft { color: var(--gold-soft) !important; }
-.text-muted { color: var(--muted) !important; }
-.text-muted-2 { color: var(--muted-2) !important; }
-.text-fg { color: var(--fg) !important; }
-.text-fg-secondary { color: var(--fg-secondary) !important; }
-.text-accent-green { color: var(--accent-green) !important; }
-.text-accent-red { color: var(--accent-red) !important; }
-.text-white { color: var(--white) !important; }
-.text-line { color: var(--line) !important; }
-.text-line-2 { color: var(--line-2) !important; }
-.text-primary { color: var(--primary) !important; }
-.text-bg { color: var(--bg) !important; }
-.text-bg-card { color: var(--bg-card) !important; }
-
-.bg-ink { background-color: var(--ink) !important; }
-.bg-ink-2 { background-color: var(--ink-2) !important; }
-.bg-cream { background-color: var(--cream) !important; }
-.bg-cream-2 { background-color: var(--cream-2) !important; }
-.bg-cream-3 { background-color: var(--cream-3) !important; }
-.bg-indigo { background-color: var(--indigo) !important; }
-.bg-gold { background-color: var(--gold) !important; }
-.bg-gold-soft { background-color: var(--gold-soft) !important; }
-.bg-white { background-color: var(--white) !important; }
-.bg-bg { background-color: var(--bg) !important; }
-.bg-bg-card { background-color: var(--bg-card) !important; }
-.bg-accent-green { background-color: var(--accent-green) !important; }
-.bg-accent-red { background-color: var(--accent-red) !important; }
-.bg-line { background-color: var(--line) !important; }
-.bg-line-2 { background-color: var(--line-2) !important; }
-.bg-primary { background-color: var(--primary) !important; }
-.bg-muted { background-color: var(--muted) !important; }
-
-.border-ink { border-color: var(--ink) !important; }
-.border-cream { border-color: var(--cream) !important; }
-.border-cream-2 { border-color: var(--cream-2) !important; }
-.border-indigo { border-color: var(--indigo) !important; }
-.border-gold { border-color: var(--gold) !important; }
-.border-line { border-color: var(--line) !important; }
-.border-line-2 { border-color: var(--line-2) !important; }
-.border-white { border-color: var(--white) !important; }
-.border-accent-green { border-color: var(--accent-green) !important; }
-.border-accent-red { border-color: var(--accent-red) !important; }
-.border-bg { border-color: var(--bg) !important; }
-.border-bg-card { border-color: var(--bg-card) !important; }
-.border-primary { border-color: var(--primary) !important; }
-.border-muted { border-color: var(--muted) !important; }
-
-.from-gold { --tw-gradient-from: var(--gold) !important; }
-.from-gold-soft { --tw-gradient-from: var(--gold-soft) !important; }
-.to-cream { --tw-gradient-to: var(--cream) !important; }
-.to-transparent { --tw-gradient-to: transparent !important; }
-
-/* Opacity variants for Chrome */
-.border-ink\/20 { border-color: rgba(30, 27, 75, 0.2) !important; }
-.bg-ink\/50 { background-color: rgba(30, 27, 75, 0.5) !important; }
-.bg-ink\/80 { background-color: rgba(30, 27, 75, 0.8) !important; }
-.bg-cream\/85 { background-color: rgba(250, 247, 242, 0.85) !important; }
-.text-gold\/18 { color: rgba(166, 124, 46, 0.18) !important; }
-.bg-gold\/18 { background-color: rgba(166, 124, 46, 0.18) !important; }
-.bg-gold\/10 { background-color: rgba(166, 124, 46, 0.1) !important; }
-.bg-accent-green\/10 { background-color: rgba(47, 111, 78, 0.1) !important; }
-.bg-accent-green\/20 { background-color: rgba(47, 111, 78, 0.2) !important; }
-.border-accent-green\/20 { border-color: rgba(47, 111, 78, 0.2) !important; }
-.bg-accent-red\/10 { background-color: rgba(162, 59, 59, 0.1) !important; }
-.bg-accent-red\/20 { background-color: rgba(162, 59, 59, 0.2) !important; }
-.border-accent-red\/20 { border-color: rgba(162, 59, 59, 0.2) !important; }
-.text-gold-soft\/30 { color: rgba(212, 184, 118, 0.3) !important; }
-.border-gold-soft\/30 { border-color: rgba(212, 184, 118, 0.3) !important; }
-.text-white\/\[\.12\] { color: rgba(255, 255, 255, 0.12) !important; }
-.text-white\/\[\.1\] { color: rgba(255, 255, 255, 0.1) !important; }
-.border-white\/\[\.12\] { border-color: rgba(255, 255, 255, 0.12) !important; }
-.border-white\/\[\.1\] { border-color: rgba(255, 255, 255, 0.1) !important; }
-.border-line\/50 { border-color: rgba(232, 227, 216, 0.5) !important; }
-.ring-ink\/\[\.08\] { --tw-ring-color: rgba(30, 27, 75, 0.08) !important; }
-.shadow-\[0_0_0_3px_rgba\(30\,27\,75\,\.08\)\] { --tw-shadow: 0 0 0 3px rgba(30,27,75,.08) !important; box-shadow: var(--tw-shadow) !important; }
-.shadow-\[0_0_0_3px_rgba\(166\,124\,46\,\.15\)\] { --tw-shadow: 0 0 0 3px rgba(166,124,46,.15) !important; box-shadow: var(--tw-shadow) !important; }
-.shadow-\[0_10px_24px_-8px_rgba\(30\,27\,75\,\.4\)\] { --tw-shadow: 0 10px 24px -8px rgba(30,27,75,.4) !important; box-shadow: var(--tw-shadow) !important; }
