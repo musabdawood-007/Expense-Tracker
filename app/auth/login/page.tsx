@@ -58,7 +58,7 @@ export default function LoginPage() {
         </div>
 
         <div className="relative z-[2] max-w-[400px]">
-          <h2 className="font-serif text-[44px] font-normal leading-[1.1] tracking-[-.02em] mb-4 text-cream">
+          <h2 className="font-serif text-[44px] font-normal leading-[1.1] tracking-[-.02em] mb-4" style={{ color: "#FAF7F2" }}>
             Spend with <em className="text-gold-soft italic" style={{ fontStyle: "italic" }}>intention</em>.
           </h2>
           <p className="text-cream-3 opacity-70 text-[15px] leading-[1.6]">
