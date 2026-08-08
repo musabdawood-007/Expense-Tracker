@@ -76,10 +76,18 @@ export async function PUT(req: Request) {
   try {
     await connectDB();
     const body = await req.json();
-    const { roomId, expense, settle } = body;
+    const { roomId, expense, settle, deleteExpense } = body;
 
     if (settle) {
       const room = await Room.findByIdAndUpdate(roomId, { settled: true }, { new: true });
+      return NextResponse.json({ room });
+    }
+
+    if (deleteExpense !== undefined && deleteExpense !== null) {
+      const room = await Room.findById(roomId);
+      if (!room) return NextResponse.json({ error: "Room not found" }, { status: 404 });
+      room.expenses.splice(deleteExpense, 1);
+      await room.save();
       return NextResponse.json({ room });
     }
 

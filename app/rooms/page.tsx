@@ -47,7 +47,7 @@ function RoomsContent() {
   const [expTitle, setExpTitle] = useState("");
   const [expAmount, setExpAmount] = useState("");
   const [expPaidBy, setExpPaidBy] = useState("");
-  const [expSplit, setExpSplit] = useState("");
+  const [expSplit, setExpSplit] = useState<string[]>([]);
 
   useEffect(() => {
     if (authLoading) return;
@@ -123,7 +123,7 @@ function RoomsContent() {
 
   const handleAddExpense = async () => {
     if (!activeRoom || !expTitle || !expAmount || !expPaidBy) return;
-    const splitList = expSplit ? expSplit.split(",").map((s) => s.trim()).filter(Boolean) : activeRoom.members;
+    const splitList = expSplit.length > 0 ? expSplit : activeRoom.members;
     const expense = {
       title: expTitle,
       amount: Number(expAmount),
@@ -143,9 +143,29 @@ function RoomsContent() {
       setExpTitle("");
       setExpAmount("");
       setExpPaidBy("");
-      setExpSplit("");
+      setExpSplit([]);
       addToast("Expense added to room");
     }
+  };
+
+  const handleDeleteExpense = async (expenseIndex: number) => {
+    if (!activeRoom) return;
+    if (!confirm("Remove this expense?")) return;
+    const res = await fetch("/api/rooms", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ roomId: activeRoom._id, deleteExpense: expenseIndex }),
+    });
+    const d = await res.json();
+    if (d.room) {
+      setActiveRoom(d.room);
+      setRooms((prev) => prev.map((r) => r._id === d.room._id ? d.room : r));
+      addToast("Expense removed");
+    }
+  };
+
+  const toggleSplit = (name: string) => {
+    setExpSplit((prev) => prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name]);
   };
 
   const handleSettle = async (roomId: string) => {
@@ -306,9 +326,9 @@ function RoomsContent() {
             <h3 className="font-serif text-[16px] font-medium mb-3" style={{ color: "#1E1B4B" }}>Members</h3>
             <div className="flex flex-wrap gap-2">
               {activeRoom.members.map((m, i) => (
-                <div key={i} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-cream-2 text-[13px] font-medium">
-                  <div className="w-6 h-6 rounded-full bg-ink text-cream grid place-items-center text-[10px] font-semibold">{m.charAt(0).toUpperCase()}</div>
-                  {m}
+                <div key={i} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-cream-2 text-[13px] font-medium text-ink">
+                  <span className="w-6 h-6 rounded-full bg-ink text-cream grid place-items-center text-[10px] font-semibold shrink-0">{m.charAt(0).toUpperCase()}</span>
+                  <span>{m}</span>
                 </div>
               ))}
             </div>
@@ -321,12 +341,27 @@ function RoomsContent() {
               <input value={expTitle} onChange={(e) => setExpTitle(e.target.value)} placeholder="Title (e.g. Cafe bill)" className="px-3.5 py-[11px] border border-line-2 rounded-lg text-[13px] bg-white text-ink placeholder:text-muted focus:border-ink" />
               <input type="number" value={expAmount} onChange={(e) => setExpAmount(e.target.value)} placeholder={`Amount (${symbol})`} className="px-3.5 py-[11px] border border-line-2 rounded-lg text-[13px] bg-white text-ink placeholder:text-muted focus:border-ink" />
             </div>
-            <div className="grid grid-cols-2 max-[600px]:grid-cols-1 gap-3 mb-3">
-              <select value={expPaidBy} onChange={(e) => setExpPaidBy(e.target.value)} className="px-3.5 py-[11px] border border-line-2 rounded-lg text-[13px] bg-white text-ink focus:border-ink">
-                <option value="">Paid by...</option>
+            <div className="mb-3">
+              <label className="block text-[12px] font-medium text-muted mb-2">Paid by</label>
+              <select value={expPaidBy} onChange={(e) => setExpPaidBy(e.target.value)} className="w-full px-3.5 py-[11px] border border-line-2 rounded-lg text-[13px] bg-white text-ink focus:border-ink">
+                <option value="">Select who paid...</option>
                 {activeRoom.members.map((m) => <option key={m} value={m}>{m}</option>)}
               </select>
-              <input value={expSplit} onChange={(e) => setExpSplit(e.target.value)} placeholder="Split among (comma names, or leave for all)" className="px-3.5 py-[11px] border border-line-2 rounded-lg text-[13px] bg-white text-ink placeholder:text-muted focus:border-ink" />
+            </div>
+            <div className="mb-4">
+              <label className="block text-[12px] font-medium text-muted mb-2">Split among</label>
+              <div className="flex flex-wrap gap-2">
+                {activeRoom.members.map((m) => {
+                  const checked = expSplit.includes(m) || expSplit.length === 0;
+                  return (
+                    <button key={m} type="button" onClick={() => toggleSplit(m)} className={`flex items-center gap-2 px-3 py-2 rounded-lg text-[13px] font-medium border transition-all ${checked ? "bg-ink text-cream border-ink" : "bg-white text-muted border-line-2 hover:border-ink"}`}>
+                      <span className={`w-4 h-4 rounded border grid place-items-center text-[10px] ${checked ? "bg-cream border-cream text-ink" : "border-line-2"}`}>{checked ? "✓" : ""}</span>
+                      {m}
+                    </button>
+                  );
+                })}
+              </div>
+              <p className="text-[11px] text-muted mt-1.5">Leave all unchecked to split equally among everyone</p>
             </div>
             <button onClick={handleAddExpense} disabled={!expTitle || !expAmount || !expPaidBy} className="px-5 py-2.5 rounded-lg bg-ink text-cream text-[13px] font-medium hover:bg-ink-2 transition-all disabled:opacity-50">Add expense</button>
           </div>
@@ -355,6 +390,7 @@ function RoomsContent() {
                     <th className="text-left px-5 py-3 max-[600px]:hidden">Paid by</th>
                     <th className="text-left px-5 py-3 max-[600px]:hidden">Split</th>
                     <th className="text-right px-5 py-3">Amount</th>
+                    <th className="text-right px-5 py-3 w-[50px]"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -364,6 +400,11 @@ function RoomsContent() {
                       <td className="px-5 py-3 text-[13px] text-muted max-[600px]:hidden">{e.paidBy}</td>
                       <td className="px-5 py-3 text-[12px] text-muted max-[600px]:hidden">{e.splitAmong.join(", ")}</td>
                       <td className="px-5 py-3 text-right font-serif text-[14px] font-medium text-ink">{symbol}{e.amount.toLocaleString()}</td>
+                      <td className="px-5 py-3 text-right">
+                        <button onClick={() => handleDeleteExpense(i)} className="w-7 h-7 rounded-lg text-muted hover:text-accent-red hover:bg-accent-red/10 grid place-items-center transition-colors" title="Remove expense">
+                          <Trash2 size={13} />
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
