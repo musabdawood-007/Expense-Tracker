@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useAuth } from "../../../components/AuthContext";
 
-
 function GoogleCallbackHandler() {
   const { login } = useAuth();
   const router = useRouter();
