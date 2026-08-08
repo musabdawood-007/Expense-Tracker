@@ -42,7 +42,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${fraunces.variable}`} suppressHydrationWarning>
-      <body className={fraunces.variable}>
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: `
+          .font-serif, h1, h2, h3, h4 {
+            font-family: var(--font-fraunces), Georgia, serif !important;
+          }
+          body {
+            font-family: var(--font-inter), system-ui, -apple-system, sans-serif !important;
+          }
+        `}} />
+      </head>
+      <body>
         <ThemeProvider>
           <AuthProvider>
             <CurrencyProvider>

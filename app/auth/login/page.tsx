@@ -34,7 +34,11 @@ export default function LoginPage() {
       setError(result.error);
       setLoading(false);
     } else {
-      router.push(`/auth/verify?email=${encodeURIComponent(email)}`);
+      if (tab === "login") {
+        router.push("/dashboard");
+      } else {
+        router.push(`/auth/verify?email=${encodeURIComponent(email)}`);
+      }
     }
   };
 

@@ -38,7 +38,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
     const data = await res.json();
     if (data.error) return { error: data.error };
-    const loginUser = { ...data.user, verified: false };
+    const loginUser = { ...data.user, verified: true };
     setUser(loginUser);
     localStorage.setItem("user", JSON.stringify(loginUser));
     return {};
