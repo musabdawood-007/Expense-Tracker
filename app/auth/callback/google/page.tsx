@@ -3,7 +3,8 @@
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
-import { useAuth } from "../../components/AuthContext";
+import { useAuth } from "../../../components/AuthContext";
+
 
 function GoogleCallbackHandler() {
   const { login } = useAuth();
