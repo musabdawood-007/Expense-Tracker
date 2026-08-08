@@ -99,7 +99,7 @@ export default function ExportPage() {
       <main className="flex-1 p-[36px_40px] pb-28 max-w-[800px] mx-auto w-full max-[600px]:p-[24px_16px_100px] max-[900px]:pl-[60px]">
         <div className="mb-8">
           <div className="text-[13px] text-muted mb-1.5">Download your data</div>
-          <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]" style={{ color: "#1E1B4B" }}>Export</h2>
+          <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]">Export</h2>
         </div>
 
         <div className="bg-white border border-line rounded-xl p-6 mb-4">
@@ -108,7 +108,7 @@ export default function ExportPage() {
               <Table size={18} className="text-ink" />
             </div>
             <div>
-              <h3 className="font-serif text-[18px] font-medium" style={{ color: "#1E1B4B" }}>CSV Export</h3>
+              <h3 className="font-serif text-[18px] font-medium">CSV Export</h3>
               <p className="text-[12px] text-muted">Transactions only — spreadsheet format for Excel & Google Sheets</p>
             </div>
           </div>
@@ -126,7 +126,7 @@ export default function ExportPage() {
               <FileText size={18} className="text-ink" />
             </div>
             <div>
-              <h3 className="font-serif text-[18px] font-medium" style={{ color: "#1E1B4B" }}>Full JSON Export</h3>
+              <h3 className="font-serif text-[18px] font-medium">Full JSON Export</h3>
               <p className="text-[12px] text-muted">Everything — transactions, budgets, goals in one file</p>
             </div>
           </div>

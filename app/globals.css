@@ -27,74 +27,34 @@
   --color-white: #FFFFFF;
 }
 
-:root {
-  --cream: #FAF7F2;
-  --cream-2: #F3EFE7;
-  --cream-3: #EDE7DA;
-  --ink: #1E1B4B;
-  --ink-2: #2D2A6E;
-  --ink-3: #3F3B7E;
-  --indigo: #4338CA;
-  --indigo-light: #6366F1;
-  --indigo-pale: #E0E1F5;
-  --gold: #A67C2E;
-  --gold-soft: #D4B876;
-  --muted: #6B6794;
-  --muted-2: #8B87A8;
-  --line: #E8E3D8;
-  --line-2: #D9D3C4;
-  --white: #FFFFFF;
-  --accent-green: #2F6F4E;
-  --accent-red: #A23B3B;
-  --bg: #FAF7F2;
-  --bg-card: #FFFFFF;
-  --fg: #1E1B4B;
-  --fg-secondary: #6B6794;
-  --border: #E8E3D8;
-  --primary: #1E1B4B;
-  --primary-dark: #2D2A6E;
-}
-
-.dark {
-  --bg: #0f0f23;
-  --bg-card: #1a1a3e;
-  --ink: #f0ece4;
-  --fg: #f0ece4;
-  --fg-secondary: #9e99af;
-  --border: #2a2a4a;
-  --primary: #A67C2E;
-  --primary-dark: #D4B876;
-  --cream: #f0ece4;
-  --cream-2: #1a1a3e;
-  --cream-3: #2a2a4a;
-  --muted: #9e99af;
-  --muted-2: #7a768e;
-  --line: #2a2a4a;
-  --line-2: #3a3a5a;
-}
-
-* { border-color: var(--border); }
+* { border-color: var(--color-border); }
 
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--color-bg);
+  color: var(--color-fg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4 {
+  color: var(--color-ink);
   line-height: 1.08;
   letter-spacing: -0.015em;
   font-weight: 500;
 }
 
+.text-cream h1, .text-cream h2, .text-cream h3, .text-cream h4,
+.bg-ink h1, .bg-ink h2, .bg-ink h3, .bg-ink h4 {
+  color: inherit;
+}
+
 input, textarea, select, button { font-family: inherit; }
 input:focus, textarea:focus, select:focus { outline: none; }
 
-::selection { background: var(--ink); color: var(--cream); }
+::selection { background: var(--color-ink); color: var(--color-cream); }
 
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: var(--color-line-2); border-radius: 3px; }
 
 .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }

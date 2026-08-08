@@ -114,7 +114,7 @@ function OTPForm() {
           <div className="w-14 h-14 rounded-2xl bg-ink text-cream grid place-items-center mx-auto mb-4">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
           </div>
-          <h2 className="font-serif text-[24px] font-medium mb-2" style={{ color: "#1E1B4B" }}>Verify your email</h2>
+          <h2 className="font-serif text-[24px] font-medium mb-2">Verify your email</h2>
           <p className="text-[14px] text-muted">We sent a 6-digit code to<br /><strong className="text-ink">{email}</strong></p>
         </div>
 

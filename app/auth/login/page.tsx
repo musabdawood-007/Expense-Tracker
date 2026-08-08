@@ -58,7 +58,7 @@ export default function LoginPage() {
         </div>
 
         <div className="relative z-[2] max-w-[400px]">
-          <h2 className="font-serif text-[44px] font-normal leading-[1.1] tracking-[-.02em] mb-4" style={{ color: "#FAF7F2" }}>
+          <h2 className="font-serif text-[44px] font-normal leading-[1.1] tracking-[-.02em] mb-4 text-cream">
             Spend with <em className="text-gold-soft italic" style={{ fontStyle: "italic" }}>intention</em>.
           </h2>
           <p className="text-cream-3 opacity-70 text-[15px] leading-[1.6]">
@@ -79,7 +79,7 @@ export default function LoginPage() {
 
           <div className="mb-8">
             <div className="text-[12px] font-semibold text-gold tracking-[.14em] uppercase mb-3.5">Welcome</div>
-            <h2 className="font-serif text-[38px] font-normal tracking-[-.025em] leading-[1.08] mb-2.5 text-ink" style={{ color: "#1E1B4B" }}>
+            <h2 className="font-serif text-[38px] font-normal tracking-[-.025em] leading-[1.08] mb-2.5 text-ink">
               {tab === "login" ? <>Welcome <em className="italic text-indigo" style={{ fontStyle: "italic" }}>back</em>.</> : <>Begin <em className="italic text-indigo" style={{ fontStyle: "italic" }}>anew</em>.</>}
             </h2>
             <p className="text-muted text-[14.5px]">

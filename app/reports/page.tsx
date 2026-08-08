@@ -66,7 +66,7 @@ export default function ReportsPage() {
         <div className="flex justify-between items-end mb-8 flex-wrap gap-3.5">
           <div>
             <div className="text-[13px] text-muted mb-1.5">Financial overview</div>
-            <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]" style={{ color: "#1E1B4B" }}>Reports</h2>
+            <h2 className="font-serif text-[32px] font-medium tracking-[-.02em] max-[600px]:text-[24px]">Reports</h2>
           </div>
           <div className="flex gap-1">
             {["weekly", "monthly", "yearly"].map((p) => (
@@ -94,7 +94,7 @@ export default function ReportsPage() {
         {/* Charts */}
         <div className="grid grid-cols-1 max-[800px]:grid-cols-1 gap-4 mb-4">
           <div className="bg-white border border-line rounded-xl p-6">
-            <h3 className="font-serif text-[18px] font-medium tracking-[-.015em] mb-4" style={{ color: "#1E1B4B" }}>Spending by category</h3>
+            <h3 className="font-serif text-[18px] font-medium tracking-[-.015em] mb-4">Spending by category</h3>
             {categoryData.length > 0 ? (
               <ResponsiveContainer width="100%" height={300}>
                 <PieChart>
@@ -121,7 +121,7 @@ export default function ReportsPage() {
 
         <div className="grid grid-cols-1 max-[800px]:grid-cols-1 gap-4 mb-4">
           <div className="bg-white border border-line rounded-xl p-6">
-            <h3 className="font-serif text-[18px] font-medium tracking-[-.015em] mb-4" style={{ color: "#1E1B4B" }}>Monthly trend</h3>
+            <h3 className="font-serif text-[18px] font-medium tracking-[-.015em] mb-4">Monthly trend</h3>
             {monthlyData.length > 0 ? (
               <ResponsiveContainer width="100%" height={260}>
                 <BarChart data={monthlyData}>
@@ -141,7 +141,7 @@ export default function ReportsPage() {
         {/* Top expense */}
         {topExpense && (
           <div className="bg-white border border-line rounded-xl p-6">
-            <h3 className="font-serif text-[18px] font-medium tracking-[-.015em] mb-4" style={{ color: "#1E1B4B" }}>Top expense</h3>
+            <h3 className="font-serif text-[18px] font-medium tracking-[-.015em] mb-4">Top expense</h3>
             <div className="flex items-center gap-3">
               <div className="w-[42px] h-[42px] rounded-[10px] bg-cream-2 grid place-items-center text-[18px]">💸</div>
               <div className="flex-1">
