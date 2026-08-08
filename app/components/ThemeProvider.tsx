@@ -18,13 +18,12 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const saved = localStorage.getItem("theme") as Theme | null;
-    if (saved) {
-      setTheme(saved);
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
-    }
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initial = saved || (prefersDark ? "dark" : "light");
+    setTheme(initial);
+    document.documentElement.classList.toggle("dark", initial === "dark");
+    setMounted(true);
   }, []);
 
   useEffect(() => {
@@ -34,8 +33,6 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
   }, [theme, mounted]);
 
   const toggle = () => setTheme((t) => (t === "light" ? "dark" : "light"));
-
-  if (!mounted) return <>{children}</>;
 
   return (
     <ThemeContext.Provider value={{ theme, toggle }}>
