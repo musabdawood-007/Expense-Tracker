@@ -71,12 +71,6 @@ export default function LoginPage() {
         </div>
       </aside>
 
-        <div className="relative z-[2] text-[12px] opacity-60 flex justify-between items-center">
-          <span>© 2026 SpendWise</span>
-          <span>Made with care</span>
-        </div>
-      </aside>
-
       <main className="flex items-center justify-center p-[50px_32px] bg-cream relative">
         <div className="w-full max-w-[420px] relative z-[2]">
           <Link href="/" className="inline-flex items-center gap-1.5 text-[13px] text-muted mb-10 hover:text-ink transition-colors">
