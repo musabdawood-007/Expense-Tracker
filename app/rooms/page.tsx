@@ -13,6 +13,7 @@ interface RoomExpense {
   amount: number;
   paidBy: string;
   splitAmong: string[];
+  splitAmounts?: Record<string, number>;
   date: string;
 }
 
@@ -48,6 +49,8 @@ function RoomsContent() {
   const [expAmount, setExpAmount] = useState("");
   const [expPaidBy, setExpPaidBy] = useState("");
   const [expSplit, setExpSplit] = useState<string[]>([]);
+  const [splitMode, setSplitMode] = useState<"equal" | "manual">("equal");
+  const [manualAmounts, setManualAmounts] = useState<Record<string, string>>({});
 
   useEffect(() => {
     if (authLoading) return;
@@ -122,13 +125,30 @@ function RoomsContent() {
   };
 
   const handleAddExpense = async () => {
-    if (!activeRoom || !expTitle || !expAmount || !expPaidBy) return;
-    const splitList = expSplit.length > 0 ? expSplit : activeRoom.members;
+    if (!activeRoom || !expTitle || !expPaidBy) return;
+    const membersInSplit = expSplit.length > 0 ? expSplit : activeRoom.members;
+    let totalAmount = 0;
+    let splitAmounts: Record<string, number> | undefined;
+
+    if (splitMode === "manual") {
+      splitAmounts = {};
+      for (const m of membersInSplit) {
+        const val = Number(manualAmounts[m] || 0);
+        splitAmounts[m] = val;
+        totalAmount += val;
+      }
+      if (totalAmount <= 0) return;
+    } else {
+      if (!expAmount) return;
+      totalAmount = Number(expAmount);
+    }
+
     const expense = {
       title: expTitle,
-      amount: Number(expAmount),
+      amount: totalAmount,
       paidBy: expPaidBy,
-      splitAmong: splitList,
+      splitAmong: membersInSplit,
+      splitAmounts,
       date: new Date().toISOString().split("T")[0],
     };
     const res = await fetch("/api/rooms", {
@@ -144,6 +164,7 @@ function RoomsContent() {
       setExpAmount("");
       setExpPaidBy("");
       setExpSplit([]);
+      setManualAmounts({});
       addToast("Expense added to room");
     }
   };
@@ -198,11 +219,17 @@ function RoomsContent() {
     const balances: Record<string, number> = {};
     room.members.forEach((m) => { balances[m] = 0; });
     room.expenses.forEach((e) => {
-      const share = e.amount / e.splitAmong.length;
       balances[e.paidBy] = (balances[e.paidBy] || 0) + e.amount;
-      e.splitAmong.forEach((m) => {
-        balances[m] = (balances[m] || 0) - share;
-      });
+      if (e.splitAmounts && Object.keys(e.splitAmounts).length > 0) {
+        Object.entries(e.splitAmounts).forEach(([m, share]) => {
+          balances[m] = (balances[m] || 0) - share;
+        });
+      } else {
+        const share = e.amount / e.splitAmong.length;
+        e.splitAmong.forEach((m) => {
+          balances[m] = (balances[m] || 0) - share;
+        });
+      }
     });
     return balances;
   };
@@ -339,7 +366,7 @@ function RoomsContent() {
             <h3 className="font-serif text-[16px] font-medium mb-3">Add expense</h3>
             <div className="grid grid-cols-2 max-[600px]:grid-cols-1 gap-3 mb-3">
               <input value={expTitle} onChange={(e) => setExpTitle(e.target.value)} placeholder="Title (e.g. Cafe bill)" className="px-3.5 py-[11px] border border-line-2 rounded-lg text-[13px] bg-white text-ink placeholder:text-muted focus:border-ink" />
-              <input type="number" value={expAmount} onChange={(e) => setExpAmount(e.target.value)} placeholder={`Amount (${symbol})`} className="px-3.5 py-[11px] border border-line-2 rounded-lg text-[13px] bg-white text-ink placeholder:text-muted focus:border-ink" />
+              {splitMode === "equal" && <input type="number" value={expAmount} onChange={(e) => setExpAmount(e.target.value)} placeholder={`Amount (${symbol})`} className="px-3.5 py-[11px] border border-line-2 rounded-lg text-[13px] bg-white text-ink placeholder:text-muted focus:border-ink" />}
             </div>
             <div className="mb-3">
               <label className="block text-[12px] font-medium text-muted mb-2">Paid by</label>
@@ -348,22 +375,50 @@ function RoomsContent() {
                 {activeRoom.members.map((m) => <option key={m} value={m}>{m}</option>)}
               </select>
             </div>
+
+            {/* Split mode toggle */}
+            <div className="mb-3">
+              <label className="block text-[12px] font-medium text-muted mb-2">Split method</label>
+              <div className="flex gap-2">
+                <button type="button" onClick={() => setSplitMode("equal")} className={`flex-1 px-3 py-2 rounded-lg text-[13px] font-medium border transition-all ${splitMode === "equal" ? "bg-ink text-cream border-ink" : "bg-white text-muted border-line-2 hover:border-ink"}`}>
+                  ⚖️ Split equally
+                </button>
+                <button type="button" onClick={() => setSplitMode("manual")} className={`flex-1 px-3 py-2 rounded-lg text-[13px] font-medium border transition-all ${splitMode === "manual" ? "bg-ink text-cream border-ink" : "bg-white text-muted border-line-2 hover:border-ink"}`}>
+                  ✏️ Manual amounts
+                </button>
+              </div>
+            </div>
+
+            {/* Member selection + amounts */}
             <div className="mb-4">
-              <label className="block text-[12px] font-medium text-muted mb-2">Split among</label>
-              <div className="flex flex-wrap gap-2">
+              <label className="block text-[12px] font-medium text-muted mb-2">
+                {splitMode === "equal" ? "Split among" : "Amount per person"}
+              </label>
+              <div className="space-y-2">
                 {activeRoom.members.map((m) => {
                   const checked = expSplit.includes(m) || expSplit.length === 0;
                   return (
-                    <button key={m} type="button" onClick={() => toggleSplit(m)} className={`flex items-center gap-2 px-3 py-2 rounded-lg text-[13px] font-medium border transition-all ${checked ? "bg-ink text-cream border-ink" : "bg-white text-muted border-line-2 hover:border-ink"}`}>
-                      <span className={`w-4 h-4 rounded border grid place-items-center text-[10px] ${checked ? "bg-cream border-cream text-ink" : "border-line-2"}`}>{checked ? "✓" : ""}</span>
-                      {m}
-                    </button>
+                    <div key={m} className="flex items-center gap-2">
+                      <button type="button" onClick={() => toggleSplit(m)} className={`flex items-center gap-2 px-3 py-2 rounded-lg text-[13px] font-medium border transition-all min-w-[120px] ${checked ? "bg-ink text-cream border-ink" : "bg-white text-muted border-line-2 hover:border-ink"}`}>
+                        <span className={`w-4 h-4 rounded border grid place-items-center text-[10px] shrink-0 ${checked ? "bg-cream border-cream text-ink" : "border-line-2"}`}>{checked ? "✓" : ""}</span>
+                        {m}
+                      </button>
+                      {splitMode === "manual" && checked && (
+                        <input type="number" value={manualAmounts[m] || ""} onChange={(e) => setManualAmounts((prev) => ({ ...prev, [m]: e.target.value }))} placeholder={`0`} className="flex-1 px-3 py-2 border border-line-2 rounded-lg text-[13px] bg-white text-ink placeholder:text-muted focus:border-ink" />
+                      )}
+                    </div>
                   );
                 })}
               </div>
-              <p className="text-[11px] text-muted mt-1.5">Leave all unchecked to split equally among everyone</p>
+              {splitMode === "equal" && <p className="text-[11px] text-muted mt-1.5">Leave all unchecked to split equally among everyone</p>}
+              {splitMode === "manual" && (
+                <p className="text-[11px] text-muted mt-1.5">
+                  Total: <strong className="text-ink">{symbol}{Object.values(manualAmounts).reduce((s, v) => s + Number(v || 0), 0).toLocaleString()}</strong>
+                </p>
+              )}
             </div>
-            <button onClick={handleAddExpense} disabled={!expTitle || !expAmount || !expPaidBy} className="px-5 py-2.5 rounded-lg bg-ink text-cream text-[13px] font-medium hover:bg-ink-2 transition-all disabled:opacity-50">Add expense</button>
+
+            <button onClick={handleAddExpense} disabled={!expTitle || !expPaidBy} className="px-5 py-2.5 rounded-lg bg-ink text-cream text-[13px] font-medium hover:bg-ink-2 transition-all disabled:opacity-50">Add expense</button>
           </div>
 
           {/* Balances */}
