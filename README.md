@@ -25,16 +25,6 @@ A full-stack expense tracking application with bill splitting, budgets, goals, a
 - Responsive design (mobile + desktop)
 - Dark/light theme toggle
 
-## Environment Variables
-
-Set these in your Vercel dashboard under **Settings > Environment Variables**:
-
-| Variable | Value |
-|----------|-------|
-| `MONGODB_URI` | `mongodb+srv://musabprojectsotpservice_db_user:Wb9CLENlQy0JZAkJ@expensedata.myfkyzz.mongodb.net` |
-| `SMTP_EMAIL` | `musab.projects.otp.service@gmail.com` |
-| `SMTP_PASS` | `zptj xodf exre peyq` |
-
 ## Deploy to Vercel
 
 1. Push this repo to GitHub
